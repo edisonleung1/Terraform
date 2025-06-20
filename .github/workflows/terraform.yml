@@ -26,12 +26,11 @@ jobs:
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v3
 
-      - name: Test ping
-        run: |
-          echo "Testing connectivity to ESXi host"
-          ESXI_HOST=${{ secrets.ESXI_HOST }}
-          echo $ESXI_HOST
-          ping -c 4 ${{ secrets.ESXI_HOST }}
+      - name: Install node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+          cache: 'npm'
 
       - name: Terraform Init
         working-directory: ./env/dev
