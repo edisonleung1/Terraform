@@ -1,8 +1,8 @@
 terraform {
   required_providers {
     vsphere = {
-      source  = "localdomain/telmate/vmware"
-      version = "0.3.0"
+      source  = "vmware/vsphere" # <-- change from hashicorp/vsphere
+      version = ">= 2.13.0"
     }
   }
 }
