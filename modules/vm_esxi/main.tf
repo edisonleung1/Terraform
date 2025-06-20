@@ -27,11 +27,6 @@ resource "vsphere_virtual_machine" "vm" {
     thin_provisioned = true
   }
 
-  cdrom {
-    datastore_id = var.datastore_id
-    path         = var.iso_path
-  }
-
   lifecycle {
     ignore_changes = [clone]
   }
