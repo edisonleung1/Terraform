@@ -37,5 +37,4 @@ module "vm" {
   memory           = var.memory
   network_id       = data.vsphere_network.net.id
   disk_size        = var.disk_size
-  iso_path         = var.iso_path
 }

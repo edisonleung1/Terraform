@@ -36,6 +36,6 @@ resource "vsphere_virtual_machine" "vm" {
     ignore_changes = [clone]
   }
   
-  firmware = "bios" # 或 "efi" 若你是 UEFI PXE server
+  firmware = "efi" # 或 "efi" 若你是 UEFI PXE server
 
 }
