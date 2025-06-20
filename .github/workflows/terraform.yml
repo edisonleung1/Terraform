@@ -30,15 +30,19 @@ jobs:
           terraform init
 
       - name: Terraform Format
+        working-directory: ./env/dev
         run: terraform fmt -check
 
       - name: Terraform Validate
+        working-directory: ./env/dev
         run: terraform validate
 
       - name: Terraform Plan
+        working-directory: ./env/dev
         run: terraform plan -out=tfplan
 
       - name: Terraform Apply (manual approval)
+        working-directory: ./env/dev
         if: github.ref == 'refs/heads/main'
         run: terraform apply -auto-approve tfplan
         env:
