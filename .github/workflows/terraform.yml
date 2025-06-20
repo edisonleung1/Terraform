@@ -34,7 +34,7 @@ jobs:
         run: |
           wget https://github.com/vmware/terraform-provider-vsphere/releases/download/v2.13.0/terraform-provider-vsphere_2.13.0_linux_amd64.zip
           mkdir -p ~/.terraform.d/plugins/localdomain/telmate/vmware/0.3.0/linux_amd64/terraform-provider-vmware
-          mv terraform-provider-vmware-linux-amd64 ~/.terraform.d/plugins/localdomain/telmate/vmware/0.3.0/linux_amd64/terraform-provider-vmware
+          mv terraform-provider-vsphere*.zip ~/.terraform.d/plugins/localdomain/telmate/vmware/0.3.0/linux_amd64/terraform-provider-vmware
           chmod +x ~/.terraform.d/plugins/localdomain/telmate/vmware/0.3.0/linux_amd64/terraform-provider-vmware
 
       - name: Terraform Init
