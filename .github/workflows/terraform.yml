@@ -1,11 +1,12 @@
 name: Terraform Plan & Apply
 
 on:
-  workflows_dispatch:
+  workflow_dispatch:
     secrets:
       ESXI_PASSWORD:
         description: 'Password for ESXi host'
         required: true
+        type: secret
 
 jobs:
   terraform:
