@@ -30,6 +30,8 @@ jobs:
         run: |
           echo "Testing connectivity to ESXi host"
           ping -c 4 ${{ secrets.ESXI_HOST }}
+          ESXI_HOST=${{ secrets.ESXI_HOST }}
+          echo $ESXI_HOST
 
       - name: Terraform Init
         working-directory: ./env/dev
