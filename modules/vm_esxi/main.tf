@@ -1,8 +1,8 @@
 terraform {
   required_providers {
-    vsphere = {
-      source  = "vmware/vsphere"   # <-- change from hashicorp/vsphere
-      version = ">= 2.13.0"
+    vmware = {
+      source  = "telmate/vmware"
+      version = ">= 0.3.0"
     }
   }
 }
@@ -35,9 +35,18 @@ resource "vsphere_virtual_machine" "vm" {
   lifecycle {
     ignore_changes = [clone]
   }
+  
   firmware = "bios" # 或 "efi" 若你是 UEFI PXE server
-  boot_options {
-    boot_order = ["network", "disk"]
-    enter_bios = false
+
+  boot {
+    enter_setup_mode = false
+    delay            = 2000
+    retry            = true
+    retry_delay      = 10000
+    network_boot     = true       # 關鍵：PXE boot
+    disk             = true
+    cdrom            = false
   }
+
+  clone_from_vm = false  # 建立空 VM，可搭配 PXE 安裝系統
 }
