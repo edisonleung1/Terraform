@@ -35,4 +35,9 @@ resource "vsphere_virtual_machine" "vm" {
   lifecycle {
     ignore_changes = [clone]
   }
+  firmware = "bios" # 或 "efi" 若你是 UEFI PXE server
+  boot_options {
+    boot_order = ["network", "disk"]
+    enter_bios = false
+  }
 }
