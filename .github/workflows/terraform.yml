@@ -29,8 +29,6 @@ jobs:
       - name: Terraform Init
         working-directory: ./env/dev
         run: |
-          pwd
-          ls -lrt
           terraform init
 
       - name: Terraform Format
