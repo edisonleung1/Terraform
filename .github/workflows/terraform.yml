@@ -14,7 +14,7 @@ on:
 jobs:
   terraform:
     environment: ca
-    runs-on: localhost
+    runs-on: self-hosted
     env:
       # TF_VAR_esxi_user: ${{ secrets.ESXI_USER }}
       TF_VAR_esxi_password: ${{ secrets.ESXI_PASSWORD }}
