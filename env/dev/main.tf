@@ -1,14 +1,14 @@
 terraform {
   required_providers {
     vsphere = {
-      source  = "vmware/vsphere"   # <-- change from hashicorp/vsphere
+      source  = "vmware/vsphere" # <-- change from hashicorp/vsphere
       version = ">= 2.13.0"
     }
   }
 }
 
 data "vsphere_datacenter" "dc" {
-  name = "ha-datacenter"  # default name for standalone ESXi
+  name = "ha-datacenter" # default name for standalone ESXi
 }
 
 data "vsphere_host" "host" {
@@ -17,17 +17,17 @@ data "vsphere_host" "host" {
 }
 
 data "vsphere_datastore" "ds" {
-  name          = "datastore1"  # replace with your actual datastore name
+  name          = "datastore1" # replace with your actual datastore name
   datacenter_id = data.vsphere_datacenter.dc.id
 }
 
 data "vsphere_network" "net" {
-  name          = "VM Network"  # replace with your actual network name
+  name          = "VM Network" # replace with your actual network name
   datacenter_id = data.vsphere_datacenter.dc.id
 }
 
 module "vm" {
-  source           = "../../modules/vm_esxi"
+  source = "../../modules/vm_esxi"
 
   vm_name          = var.vm_name
   resource_pool_id = data.vsphere_host.host.resource_pool_id
