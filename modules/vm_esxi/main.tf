@@ -38,15 +38,4 @@ resource "vsphere_virtual_machine" "vm" {
   
   firmware = "bios" # 或 "efi" 若你是 UEFI PXE server
 
-  boot {
-    enter_setup_mode = false
-    delay            = 2000
-    retry            = true
-    retry_delay      = 10000
-    network_boot     = true       # 關鍵：PXE boot
-    disk             = true
-    cdrom            = false
-  }
-
-  clone_from_vm = false  # 建立空 VM，可搭配 PXE 安裝系統
 }
