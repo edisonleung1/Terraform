@@ -23,12 +23,17 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v3
 
       - name: Terraform Init
         working-directory: ./env/dev
         run: |
+          export PATH="${PATH}:/home/runner/externals/node20/bin/"
           terraform init
 
       - name: Terraform Format
