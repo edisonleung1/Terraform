@@ -1,4 +1,4 @@
-name: Terraform Plan & Apply
+name: Terraform Plan & Apply for dev
 
 on:
   push:
@@ -23,6 +23,7 @@ jobs:
         uses: hashicorp/setup-terraform@v3
 
       - name: Terraform Init
+        working-directory: ./env/dev
         run: |
           pwd
           ls -lrt
