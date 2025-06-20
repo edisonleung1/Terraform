@@ -30,6 +30,13 @@ jobs:
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v3
 
+      - name: Install terraform-provider-vmware
+        run: |
+          wget https://github.com/Telmate/terraform-provider-vmware/releases/download/v0.3.0/terraform-provider-vmware-linux-amd64
+          mkdir -p ~/.terraform.d/plugins/localdomain/telmate/vmware/0.3.0/linux_amd64
+          mv terraform-provider-vmware-linux-amd64 ~/.terraform.d/plugins/localdomain/telmate/vmware/0.3.0/linux_amd64/terraform-provider-vmware
+          chmod +x ~/.terraform.d/plugins/localdomain/telmate/vmware/0.3.0/linux_amd64/terraform-provider-vmware
+
       - name: Terraform Init
         working-directory: ./env/dev
         run: |

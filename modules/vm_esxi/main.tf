@@ -1,8 +1,8 @@
 terraform {
   required_providers {
     vmware = {
-      source  = "telmate/vmware"
-      version = ">= 0.3.0"
+      source  = "localdomain/telmate/vmware"
+      version = "0.3.0"
     }
   }
 }
