@@ -1,6 +1,9 @@
 name: Terraform Plan & Apply
 
 on:
+  push:
+    branches:
+      - main
   workflow_dispatch:
     secrets:
       ESXI_PASSWORD:
@@ -20,7 +23,11 @@ jobs:
         uses: hashicorp/setup-terraform@v3
 
       - name: Terraform Init
-        run: terraform init
+        working-directory: terraform
+        run: |
+          pwd
+          ls -lrt
+          terraform init
 
       - name: Terraform Format
         run: terraform fmt -check
