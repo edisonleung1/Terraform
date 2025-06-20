@@ -23,7 +23,6 @@ jobs:
         uses: hashicorp/setup-terraform@v3
 
       - name: Terraform Init
-        working-directory: terraform
         run: |
           pwd
           ls -lrt
