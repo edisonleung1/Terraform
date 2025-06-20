@@ -26,6 +26,11 @@ jobs:
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v3
 
+      - name: Test ping
+        run: |
+          echo "Testing connectivity to ESXi host"
+          ping -c 4 ${{ secrets.ESXI_HOST }}
+
       - name: Terraform Init
         working-directory: ./env/dev
         run: |
