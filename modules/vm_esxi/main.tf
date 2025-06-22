@@ -8,6 +8,10 @@ terraform {
 }
 
 resource "vsphere_virtual_machine" "vm" {
+
+  wait_for_guest_net_timeout = 0
+  wait_for_guest_ip_timeout  = 0
+
   name             = var.vm_name
   firmware = var.firmware
   guest_id         = var.guest_id
