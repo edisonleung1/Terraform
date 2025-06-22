@@ -1,0 +1,52 @@
+name: Create new vm on ESXi
+
+on:
+  push:
+  workflow_dispatch:
+    secrets:
+      ESXI_PASSWORD:
+        description: 'Password for ESXi host'
+        required: true
+        type: secret
+
+jobs:
+  terraform:
+    environment: ca
+    runs-on: self-hosted
+    env:
+      # TF_VAR_esxi_user: ${{ secrets.ESXI_USER }}
+      TF_VAR_esxi_password: ${{ secrets.ESXI_PASSWORD }}
+      TF_VAR_esxi_host: ${{ secrets.ESXI_HOST }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v3
+
+      - name: Terraform Init
+        working-directory: ./env/dev
+        run: |
+          export PATH="${PATH}:/home/runner/externals/node20/bin/"
+          terraform init
+
+      - name: Terraform Format
+        working-directory: ./env/dev
+        run: terraform fmt -check
+
+      - name: Terraform Validate
+        working-directory: ./env/dev
+        run: terraform validate
+
+      - name: Terraform Plan
+        working-directory: ./env/dev
+        run: terraform plan -out=tfplan
+
+      - name: Terraform Apply (manual approval)
+        working-directory: ./env/dev
+        if: github.ref == 'refs/heads/main'
+        run: terraform apply -auto-approve tfplan

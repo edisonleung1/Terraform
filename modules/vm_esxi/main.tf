@@ -1,0 +1,36 @@
+terraform {
+  required_providers {
+    vsphere = {
+      source  = "vmware/vsphere" # <-- change from hashicorp/vsphere
+      version = ">= 2.13.0"
+    }
+  }
+}
+
+resource "vsphere_virtual_machine" "vm" {
+  name             = var.vm_name
+  resource_pool_id = var.resource_pool_id
+  datastore_id     = var.datastore_id
+  guest_id         = var.guest_id
+
+  num_cpus = var.cpu
+  memory   = var.memory
+
+  network_interface {
+    network_id   = var.network_id
+    adapter_type = "vmxnet3"
+  }
+
+  disk {
+    label            = "disk0"
+    size             = var.disk_size
+    thin_provisioned = true
+  }
+
+  lifecycle {
+    ignore_changes = [clone]
+  }
+  
+  firmware = "efi"
+
+}
