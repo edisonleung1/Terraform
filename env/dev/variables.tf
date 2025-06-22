@@ -38,8 +38,7 @@ variable "disk_size" {
   default     = 40
 }
 
-variable "iso_path" {
-  description = "ISO path on datastore"
+variable "guest_id" {
+  description = "Guest OS identifier"
   type        = string
-  default     = ""
 }
