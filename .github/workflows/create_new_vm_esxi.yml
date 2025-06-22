@@ -1,7 +1,6 @@
 name: Create new vm on ESXi
 
 on:
-  push:
   workflow_dispatch:
     secrets:
       ESXI_PASSWORD:
