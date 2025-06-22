@@ -13,7 +13,7 @@ data "vsphere_datacenter" "dc" {
 
 data "vsphere_host" "host" {
   name          = var.esxi_host
-  datacenter_id = data.vsphere_datacenter.dc.id
+  datacenter_id = vsphere_datacenter.dc.id
 }
 
 data "vsphere_datastore" "ds" {
