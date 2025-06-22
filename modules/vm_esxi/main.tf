@@ -11,7 +11,6 @@ resource "vsphere_virtual_machine" "vm" {
   name             = var.vm_name
   resource_pool_id = var.resource_pool_id
   datastore_id     = var.datastore_id
-  guest_id         = var.guest_id
 
   num_cpus = var.cpu
   memory   = var.memory
