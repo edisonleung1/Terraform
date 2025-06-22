@@ -30,13 +30,18 @@ variable "memory" {
   default     = 2048
 }
 
+variable "disk_size" {
+  description = "Disk size in GB"
+  type        = number
+  default     = 40
+}
+
 variable "network_id" {
   description = "Network ID for VM network interface"
   type        = string
 }
 
-variable "disk_size" {
-  description = "Disk size in GB"
-  type        = number
-  default     = 40
+variable "guest_id" {
+  description = "Guest OS identifier"
+  type        = string
 }
