@@ -38,6 +38,11 @@ variable "disk_size" {
   default     = 40
 }
 
+variable "network_id" {
+  description = "Network ID for VM network interface"
+  type        = string
+}
+
 variable "guest_id" {
   description = "Guest OS identifier"
   type        = string
