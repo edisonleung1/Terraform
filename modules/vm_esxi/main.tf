@@ -9,8 +9,13 @@ terraform {
 
 resource "vsphere_virtual_machine" "vm" {
   name             = var.vm_name
+  firmware = var.firmware
+  guest_id         = var.guest_id
   resource_pool_id = var.resource_pool_id
   datastore_id     = var.datastore_id
+
+  scsi_type             = "pvscsi"
+  scsi_controller_count = 1
 
   num_cpus = var.cpu
   memory   = var.memory
@@ -30,6 +35,4 @@ resource "vsphere_virtual_machine" "vm" {
     ignore_changes = [clone]
   }
   
-  firmware = "efi"
-
 }

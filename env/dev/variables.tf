@@ -20,6 +20,11 @@ variable "vm_name" {
   type        = string
 }
 
+variable "firmware" {
+  description = "firmware type"
+  type        = string
+}
+
 variable "cpu" {
   description = "CPU count"
   type        = number

@@ -13,7 +13,7 @@ data "vsphere_datacenter" "dc" {
 
 data "vsphere_host" "host" {
   name          = var.esxi_host
-  datacenter_id = vsphere_datacenter.dc.id
+  datacenter_id = data.vsphere_datacenter.dc.id
 }
 
 data "vsphere_datastore" "ds" {
@@ -31,6 +31,7 @@ module "vm" {
 
   vm_name          = var.vm_name
   resource_pool_id = data.vsphere_host.host.resource_pool_id
+  firmware         = var.firmware
   datastore_id     = data.vsphere_datastore.ds.id
   guest_id         = var.guest_id
   cpu              = var.cpu

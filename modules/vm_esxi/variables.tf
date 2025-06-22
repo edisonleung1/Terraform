@@ -8,6 +8,11 @@ variable "resource_pool_id" {
   type        = string
 }
 
+variable "firmware" {
+  description = "firmware type"
+  type        = string
+}
+
 variable "cpu" {
   description = "Number of CPUs"
   type        = number
