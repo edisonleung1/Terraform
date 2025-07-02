@@ -1,4 +1,4 @@
-vm_name   = "dev-esxi-vm"
+vm_name   = "dev-esxi-centos"
 firmware  = "efi"
 guest_id  = "centos8_64Guest"
 cpu       = 2
